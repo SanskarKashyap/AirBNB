@@ -10,11 +10,11 @@ export default function Header() {
           <span className="font-bold text-xl">Airbnc</span>  
         </a>    
         <div className="flex gap-2 border border-gray-300 rounded-full py-1 px-2 shadow-md shadow-gray-200">
-          <div>AnyWhere</div>
+          <div className="py-1.5">AnyWhere</div>
           <div className="gap-1 border-l border-gray-300"></div>
-          <div>AnyWeek</div>
+          <div className="py-1.5">AnyWeek</div>
           <div className="gap-1 border-l border-gray-300"></div>
-          <div>AddGuest</div>
+          <div className="py-1.5">AddGuest</div>
           <div className="gap-1 border-l border-gray-300"></div> 
 
           <button className="bg-primary text-white p-1 rounded-full">
@@ -25,7 +25,7 @@ export default function Header() {
 
         </div>
         <Link to="/login" className="flex gap-2 border border-gray-300 rounded-full py-1 px-2 shadow-md shadow-gray-200">
-          <div>
+          <div className=" py-2">
             <svg xmlns="http://www.w3.org/2000/svg"fill="none"viewBox="0 0 24 24"strokeWidth={1.5}stroke="currentColor"className="w-6 h-6">
               <path strokeLinecap="round"strokeLinejoin="round"d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
             </svg>           

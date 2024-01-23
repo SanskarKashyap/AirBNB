@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#E31C60', // Corrected spelling to "primary"
+        primary: '#E31C60', 
       },
     },
   },

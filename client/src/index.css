@@ -1,16 +1,25 @@
 
+
 /* style.css */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
-/* Your custom styles go here */
-
-
+/* This is only necessary if you're using PostCSS with tailwindcss */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 
-<Routes>
-<Route index
-</Routes> */
+
+/* Your custom styles go here */
+input[type="text"],
+input[type="email"],
+input[type="password"] 
+{
+  @apply w-full border my-2 py-1 px-3 rounded-lg;
+}
+button {
+    @apply text-white bg-blue-500 my-2 py-2 px-3 rounded-lg;
+}
+button:hover {
+    @apply bg-green-500;
+}
+button.primary{
+    background-color: #E31C60;
+    @apply bg-primary p-2 w-full text-white rounded-2xl; 
+} 
