@@ -1,9 +1,8 @@
-import Header from "../Header";
 
 export default function IndexPage() {
   return (
     <div>
-      "Index page here"
+      Index page here
     </div>
   );
 }
