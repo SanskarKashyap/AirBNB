@@ -7,25 +7,29 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    const observer = new MutationObserver((mutations) => {
-      // Handle mutations if needed
-      console.log("DOM mutated:", mutations);
-    });
+  // useEffect(() => {
+  //   const observer = new MutationObserver((mutations) => {
+  //     // Handle mutations if needed
+  //     console.log("DOM mutated:", mutations);
+  //   });
 
-    // Start observing changes on a relevant DOM element
-    const targetNode = document.getElementById("yourElementId"); // Replace with the actual ID
-    observer.observe(targetNode, { attributes: true, childList: true, subtree: true });
+  //   // Start observing changes on a relevant DOM element
+  //   const targetNode = document.getElementById("yourElementId"); // Replace with the actual ID
+  //   observer.observe(targetNode, { attributes: true, childList: true, subtree: true });
 
-    // Cleanup function to disconnect the observer when component unmounts
-    return () => {
-      observer.disconnect();
-    };
-  }, []); // Empty dependency array ensures useEffect runs once when component mounts
+  //   // Cleanup function to disconnect the observer when component unmounts
+  //   return () => {
+  //     observer.disconnect();
+  //   };
+  // }, []); // Empty dependency array ensures useEffect runs once when component mounts
 
   function RegisterUser(ev) {
     ev.preventDefault();
-    axios.get('http://localhost:4000/test');
+    axios.post("http://localhost:4000/register", {
+      name: name,
+      email: email,
+      password: password,
+    });
   }
 
   return (
