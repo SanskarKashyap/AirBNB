@@ -4,9 +4,10 @@ import IndexPage from "./pages/IndexPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import Layout from "./Layout.jsx";
 import Register from "./pages/RegisterPage.jsx";
-// import axios from "axios";
+import axios from "axios";
 
-// axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.withCredentials = true;
 
 function App() {
   return (

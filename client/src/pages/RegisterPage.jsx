@@ -23,14 +23,33 @@ export default function RegisterPage() {
   //   };
   // }, []); // Empty dependency array ensures useEffect runs once when component mounts
 
-  function RegisterUser(ev) {
+  async function RegisterUser(ev) {
     ev.preventDefault();
-    axios.post("http://localhost:4000/register", {
-      name: name,
-      email: email,
-      password: password,
-    });
-  }
+    try {
+        const response = await axios.post("/register", {
+            name: name,
+            email: email,
+            password: password,
+        });
+        // Registration successful
+        alert("Registration successful");
+        // Redirect user to login page
+        window.location.href = "/login";
+    } catch (error) {
+        // Registration failed
+        if (error.response) {
+            // Server responded with an error status code
+            alert("Registration failed: " + error.response.data.error);
+        } else if (error.request) {
+            // The request was made but no response was received
+            alert("Registration failed: No response from server");
+        } else {
+            // Something else happened while setting up the request
+            alert("Registration failed: " + error.message);
+        }
+    }
+}
+
 
   return (
     <div className="flex grow items-center justify-center">
