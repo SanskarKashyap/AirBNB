@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -12,11 +13,12 @@ require("dotenv").config();
 const User = require("./models/User.js");
 
 const bcryptSalt = bcrypt.genSaltSync(10);
-const JWT_SECRET = 'fdsafe4dscew21';
+const JWT_SECRET = "fdsafe4dscew21";
 
 // app.use(express.json());
 app.use(bodyParser.json()); // Parse JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded bodies
+app.use(cookieParser()); // Parse cookies
 
 app.use(
   cors({
@@ -75,27 +77,35 @@ app.post("/login", async (req, res) => {
     return res.status(401).json({ error: "Incorrect email or password" });
   }
   //if password correct, return jwt token first then send user
-  
   else {
-    jwt.sign({email:user.email,id:user._id},JWT_SECRET,{},(err,token)=>{
-      if(err) throw err;
-      res.cookie('token',token).json(user);
-    })
-    
-    // jwt.sign(
-    //   { email: user.email, id: user._id },
-    //   process.env.JWT_SECRET,
-    //   { expiresIn: "2d" },
-    //   (err, token) => {
-    //     if (err) {
-    //       return res.status(500).json(err);
-    //     }
-    //     res.json({ message: "Login successful", user, token });
-    //   }
-    // );
+    // jwt.sign({email:user.email,id:user._id,name:user.name},JWT_SECRET,{},(err,token)=>{
+    jwt.sign(
+      { email: user.email, id: user._id },
+      JWT_SECRET,
+      {},
+      (err, token) => {
+        if (err) throw err;
+        res.cookie("token", token).json(user);
+      }
+    );
   }
 });
 
 //55.17
+
+app.get("/profile", async (req, res) => {
+  const { token } = req.cookies;
+  if (token) {
+    jwt.verify(token, JWT_SECRET, {}, async (err, decoded) => {
+      if (err) throw err;
+      //  const LogedinUser = await User.findById(decoded.id);
+      //  res.json(LogedinUser);   // grab whole user details from db with the help of unique ID
+      const { name, email, id } = await User.findById(decoded.id);
+      res.json({ name, email, id });
+    });
+  } else {
+    res.status(401).json({ error: "Unauthorized" });
+  }
+});
 
 app.listen(4000);

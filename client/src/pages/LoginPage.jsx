@@ -1,11 +1,13 @@
 import { Link, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import { UserContext } from "../UserContext";
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
+  const {setUser} =useContext(UserContext);
 
   async function LoginUser(ev) {
     ev.preventDefault();
@@ -18,15 +20,16 @@ export default function LoginPage() {
         },
         // { withCredentials: true }
       );
-      
+     
+      setUser(response.data);
       // Extract user data and token from the response
-      const { user, token } = response.data;
+      const { user, token } = response;
       
       // Save token to local storage or session storage for future use
       localStorage.setItem("token", token);
 
       // Login successful
-      alert("Login successful");
+      alert("Login successful _LoginPage.jsx");
       // Update the loggedIn state
       setRedirect(true);
     } catch (error) {
@@ -45,7 +48,6 @@ export default function LoginPage() {
   }
 
   if (redirect) {
-    // Use Navigate to redirect to home page
     return <Navigate to="/" />;
   }
 
