@@ -23,12 +23,18 @@ export default function Header() {
           </svg>
           <span className="font-bold text-xl">Airbnc</span>
         </Link>
-        <div className="flex gap-2 border border-gray-300 rounded-full py-1 px-2 shadow-md shadow-gray-200">
-          <div className="py-1.5">AnyWhere</div>
+        <div className="flex gap-5 border border-gray-300 rounded-full py-1 px-2 shadow-md shadow-gray-200">
+          <div className="py-1.5 transition duration-300 ease-in-out hover:text-primary  hover:bg-gray-200 hover:rounded-full ">
+            AnyWhere
+          </div>
           <div className="gap-1 border-l border-gray-300"></div>
-          <div className="py-1.5">AnyWeek</div>
+          <div className="py-1.5 transition duration-300 ease-in-out hover:text-primary hover:bg-gray-200 hover:rounded-full ">
+            AnyWeek
+          </div>
           <div className="gap-1 border-l border-gray-300"></div>
-          <div className="py-1.5">AddGuest</div>
+          <div className="py-1.5 transition duration-300 ease-in-out hover:text-primary  hover:bg-gray-200 hover:rounded-full ">
+            AddGuest
+          </div>
           <div className="gap-1 border-l border-gray-300"></div>
 
           <button className="bg-primary text-white p-1 rounded-full">
@@ -49,7 +55,7 @@ export default function Header() {
           </button>
         </div>
         <Link
-          to={user ? "/account" : "/login"}
+          to={user ? '/account' : '/login'}
           className="flex gap-2 border border-gray-300 rounded-full py-1 px-2 shadow-md shadow-gray-200"
         >
           <div className=" py-2">

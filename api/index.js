@@ -108,4 +108,9 @@ app.get("/profile", async (req, res) => {
   }
 });
 
+
+app.post("/logout", (req, res) => {
+  res.clearCookie('token').json('logged out successfully');
+});
+
 app.listen(4000);
