@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const imageDownloader = require("image-downloader");
 
 const app = express();
 
@@ -112,5 +113,18 @@ app.get("/profile", async (req, res) => {
 app.post("/logout", (req, res) => {
   res.clearCookie('token').json('logged out successfully');
 });
+
+
+console.log({__dirname}) ;
+app.post("/upload-by-link", async (req, res) => {
+  const{link} = req.body; 
+  imageDownloader({
+    url: link,
+    dest: './public/images'
+  })
+});
+
+
+
 
 app.listen(4000);
